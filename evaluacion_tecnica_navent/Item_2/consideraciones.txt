@@ -1,0 +1,13 @@
+Consideraciones:
+
+>>> Los campos de tipo BLOB, son eficientes si contienen información de no más de 64 bytes,
+caso contrario, conviene descargar los contenidos (imágenes, PDFs, etc) a otro soporte de
+storage o usar tipos de BLOB más especificos como: TINYBLOB, MEDIUMBLOB o LONGBLOB para optimizar la performance en las consultas
+
+>>> Crearía índices para las tablas más grandes
+
+>>> Controlaría las consultas a la DDBB evitando las consultas como: "SELECT *"
+
+>>> Las consultas a la DDBB deberían hacerse mediante un slave de -sólo lectura-
+
+>>> Tendría la DDBB en un servidor separado al de las aplicaciones

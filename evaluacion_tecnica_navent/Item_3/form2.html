@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pedidos</title>
+        <link rel="stylesheet" media="screen" href="styles/form_styles.css" >
+    </head>
+    <body>
+        <form class="order_form" action="#" method="post" name="order_form" id="order_form" onsubmit="create(event)">
+            <ul>
+                <li>
+                    <h2>Realizar Pedido</h2>
+                    <span class="required_notification">* Campos Obligatorios</span>
+                </li>
+                <li>
+                    <label for="name">Nombre:</label>
+                    <input id="name" type="text" name="name" placeholder="Nombre del Pedido" maxlength="100" required />
+                </li>
+                <li>
+                    <label for="amount">Monto:</label>
+                    <input id="amount" type="text" name="amount" placeholder="$0" required pattern="(?<=\s|^)\d+(?=\s|$)"/>
+                    <span class="form_hint">Números mayores a 0, sin punto ni coma</span>
+                </li>
+                <li>
+                    <label for="discount">Descuento:</label>
+                    <input id="discount" type="text" name="discount" placeholder="$0" pattern="(?<=\s|^)\d+(?=\s|$)"/>
+                    <span class="form_hint">Números mayores a 0, sin punto ni coma</span>
+                </li>
+                </br>
+                <button class="submit" type="submit">Enviar</button>
+            </ul>
+        </form>
+    </body>
+    <script  type="text/javascript">
+        function create(e){
+            e.preventDefault();
+            const form = new FormData(document.getElementById('order_form'));
+            fetch('http://localhost/pedidos/guardar', {
+                method: 'POST',
+                body: form
+             }).then(function(response){
+                 console.log(response)
+             }).catch(function(e){
+                    console.log("Error en la llamada")
+                });
+        }
+    </script>
+</html>
